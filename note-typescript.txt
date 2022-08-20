@@ -1,0 +1,24 @@
+---- Tạo project ---
+npm init typescript-project
+
+---- Chuyển ts -> js -------
+
+1 file:        tsc path_name.ts
+tất cả file:   tsc -p ./
+
+----- Chạy project -------
+node path_name.js
+
+---- Thêm watch: true vào file: tsconfig.json --------------------
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true ,
+    "watch": true
+  }
+}
