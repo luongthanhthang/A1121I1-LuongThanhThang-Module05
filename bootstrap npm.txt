@@ -1,0 +1,12 @@
+++++++++ Nhúng bootstap npm++++++++++
+ npm i -s bootstrap@4.6
+
++++++thêm vào file angular.json++++++++
+
+ "styles": [
+              "node_modules/dist/css/bootstrap.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/dist/js/bootstrap.js"
+            ]

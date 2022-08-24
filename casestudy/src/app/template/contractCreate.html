@@ -18,63 +18,38 @@
              class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
              alt="Sample photo">
         <div class="card-body" style="background-color: #addccf;">
-          <h1 class="font-text-footer">Edit Customer</h1>
+          <h1 class="font-text-footer">Create Contract</h1>
           <br>
 
           <div class="container-fluid p-0">
-            <form action="/customer/create" method="post">
+            <form action="/contract/create" method="post">
               <div class="input-group mb-3">
-                <span class="input-group-text">Name</span>
-                <input type="text" class="form-control me-2" placeholder="name customer">
-
-                <span class="input-group-text ml-2">Gender</span>
-                <select class="me-2">
-                  <option value="">Chọn</option>
-                  <option value="1">Nam</option>
-                  <option value="0">Nữ</option>
-                </select>
+                <span class="input-group-text">Start Date</span>
+                <input type="date" class="form-control me-2" placeholder="Start Date">
               </div>
 
               <div class="input-group mb-3">
-                <span class="input-group-text">Birthday</span>
-                <input type="date" class="form-control me-2" placeholder="birthday">
-
-                <span class="input-group-text ml-2">Type</span>
-                <select class="me-2">
-                  <option value="">Chọn</option>
-                  <option value="1">Diamond</option>
-                  <option value="2">Platinum</option>
-                  <option value="3">Gold</option>
-                  <option value="4">Silver</option>
-                  <option value="5">Member</option>
-
-                </select>
+                <span class="input-group-text">End Date</span>
+                <input type="date" class="form-control me-2" placeholder="End Date">
               </div>
 
 
               <div class="input-group mb-3">
-                <span class="input-group-text">Id Card</span>
-                <input type="text" class="form-control me-2" placeholder="Id Card">
-
-                <span class="input-group-text ml-2">Phone</span>
-                <input type="text" class="form-control me-2" placeholder="phone number">
+                <span class="input-group-text">Deposit</span>
+                <input type="number" class="form-control me-2" placeholder="Deposit">
               </div>
 
               <div class="input-group mb-3">
-                <span class="input-group-text">Email</span>
-                <input type="text" class="form-control me-2" placeholder="email">
-
-                <span class="input-group-text ml-2">Address</span>
-                <input type="text" class="form-control me-2" placeholder="address">
+                <span class="input-group-text">Total Money</span>
+                <input type="number" class="form-control me-2" placeholder="Total Money">
               </div>
-
 
               <br>
               <div class="input-group mb-5 d-flex align-content-center justify-content-center">
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-primary">Create</button>
                 <button type="button" class="btn btn-danger ms-3"><a style="text-decoration: none"
                                                                      class="text-light"
-                                                                     href="/customer/list">Huỷ</a>
+                                                                     href="/contract/list">Huỷ</a>
                 </button>
               </div>
             </form>
