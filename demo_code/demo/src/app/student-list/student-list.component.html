@@ -1,9 +1,31 @@
-<h1>Student</h1>
-<p>Id sinh viên: {{student.id}}</p>
-<p>Name sinh viên: {{student.name}}</p>
-<p>Mark sinh viên: {{student.mark}}</p>
-<p>Address sinh viên: {{student.address}}</p>
-<p>Avatar sinh viên:</p> <img [src]="student.avatar" alt="">
-<label for="mark">Chấm điểm</label>
-<!--<input type="number" id="mark" (change)="changeMark($event.target)">-->
-<input type="number" id="mark" [(ngModel)]="student.mark">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Address</th>
+    <th scope="col">Mark</th>
+    <th scope="col">Result</th>
+    <th scope="col">Avatar</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let student of students; let i = index;">
+  <tr>
+    <td>{{i}}</td>
+    <td>{{student.id}}</td>
+    <td>{{student.name|titlecase}}</td>
+    <td>{{student.address}}</td>
+    <td>{{student.mark}}</td>
+    <td *ngIf="student.mark >= 5; else elseBlock">
+      Pass
+    </td>
+    <ng-template #elseBlock>
+      <td>
+        Fail
+      </td>
+    </ng-template>
+    <td><img [src]="student.avatar" alt="" height="150px" width="200px"></td>
+  </tr>
+  </tbody>
+</table>

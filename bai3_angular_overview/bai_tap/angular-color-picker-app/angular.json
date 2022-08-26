@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-color-picker-app": {
+    "test": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-color-picker-app",
+            "outputPath": "dist/test",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,9 +24,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-color-picker-app:build"
+            "browserTarget": "test:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-color-picker-app:build:production"
+              "browserTarget": "test:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-color-picker-app:build"
+            "browserTarget": "test:build"
           }
         },
         "test": {
@@ -88,11 +92,12 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/dist/css/bootstrap.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "node_modules/dist/js/bootstrap.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           }
         },
@@ -113,15 +118,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-color-picker-app:serve"
+            "devServerTarget": "test:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-color-picker-app:serve:production"
+              "devServerTarget": "test:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "angular-color-picker-app"
+  "defaultProject": "test"
 }

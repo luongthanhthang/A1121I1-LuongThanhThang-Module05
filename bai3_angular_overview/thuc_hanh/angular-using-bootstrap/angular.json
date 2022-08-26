@@ -91,9 +91,12 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/dist/css/bootstrap.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/dist/js/bootstrap.js"
+            ]
           }
         },
         "lint": {
