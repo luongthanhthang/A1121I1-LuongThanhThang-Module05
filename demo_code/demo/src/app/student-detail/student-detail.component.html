@@ -1,9 +1,11 @@
-<h1>Student</h1>
-<p>Id sinh viên: {{student.id}}</p>
-<p>Name sinh viên: {{student.name}}</p>
-<p>Mark sinh viên: {{student.mark}}</p>
-<p>Address sinh viên: {{student.address}}</p>
-<p>Avatar sinh viên:</p> <img [src]="student.avatar" alt="">
-<label for="mark">Chấm điểm</label>
-<!--<input type="number" id="mark" (change)="changeMark($event.target)">-->
-<input type="number" id="mark" [(ngModel)]="student.mark">
+<div *ngIf="studentDetail!=null">
+  <h1>Student</h1>
+  <p>Id sinh viên: {{studentDetail.id}}</p>
+  <p>Name sinh viên: {{studentDetail.name}}</p>
+  <p>Mark sinh viên: {{studentDetail.mark}}</p>
+  <p>Address sinh viên: {{studentDetail.address}}</p>
+  <p>Avatar sinh viên:</p> <img [src]="studentDetail.avatar" alt="" height="300px" width="400px">
+  <label for="mark">Chấm điểm</label>
+  <!--<input type="number" id="mark" (change)="changeMark($event.target)">-->
+  <input type="number" id="mark" [(ngModel)]="studentDetail.mark">
+</div>

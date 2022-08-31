@@ -45,6 +45,13 @@
 </script>
 
 <script>
+  function showInfo(id, name) {
+    document.getElementById("idCustomer").value = id;
+    document.getElementById("nameCustomer").innerText = name;
+  }
+</script>
+
+<script>
   // -----chạy thời gian thực----
   function localTime() {
     let date = new Date();

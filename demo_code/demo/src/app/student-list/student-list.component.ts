@@ -16,4 +16,13 @@ export class StudentListComponent implements OnInit {
   }
 
   students: IStudent[] = StudentDao.students;
+  student: IStudent;
+
+  getStudent(student: IStudent) {
+    this.student = student;
+  }
+
+  $createStudent(studentCreate: IStudent) {
+    this.students.push(studentCreate);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IStudent} from "../../models/IStudent";
 
 @Component({
@@ -7,23 +7,17 @@ import {IStudent} from "../../models/IStudent";
   styleUrls: ['./student-detail.component.css']
 })
 export class StudentDetailComponent implements OnInit {
+  @Input() studentDetail: IStudent;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
 
-  student: IStudent = {
-    id: 1,
-    address: 'đà nẵng',
-    avatar: 'https://i.pinimg.com/236x/cf/c1/af/cfc1af3b5ab61b8da0065d0dace258cf.jpg',
-    mark: 9,
-    name: 'Thắng'
-  }
-
   changeMark(target: any) {
-    this.student.mark = target.value;
+    this.studentDetail.mark = target.value;
   }
 
 }

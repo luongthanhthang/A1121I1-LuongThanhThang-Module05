@@ -1,0 +1,7 @@
+<h1>Rating Bar</h1>
+<div>
+  {{ currentValue }}
+</div>
+<app-rating-bar-component [currentValueChild]=currentValue
+                          (rateChangeChild)="rateChange($event)"
+></app-rating-bar-component>

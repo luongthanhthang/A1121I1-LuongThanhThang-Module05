@@ -1,0 +1,24 @@
+<h1>Create Student</h1>
+<div class="form-group">
+  <label for="1">id</label>
+  <input #id type="email" class="form-control" id="1" aria-describedby="emailHelp">
+</div>
+<div class="form-group">
+  <label for="2">name</label>
+  <input #name type="email" class="form-control" id="2" aria-describedby="emailHelp">
+</div>
+<div class="form-group">
+  <label for="3">mark</label>
+  <input #mark type="email" class="form-control" id="3" aria-describedby="emailHelp">
+</div>
+<div class="form-group">
+  <label for="4">avatar</label>
+  <input #avatar type="email" class="form-control" id="4" aria-describedby="emailHelp">
+</div>
+<div class="form-group">
+  <label for="5">address</label>
+  <input #address type="email" class="form-control" id="5" aria-describedby="emailHelp">
+</div>
+<button class="btn btn-primary" (click)="createStudent(id.value, name.value, mark.value, avatar.value, address.value)">
+  Create
+</button>
