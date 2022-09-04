@@ -30,4 +30,8 @@ export class StudentDao {
       name: 'Lương Thắng'
     }
   ]
+
+  static createStudent(student: IStudent) {
+    this.students.push(student);
+  }
 }

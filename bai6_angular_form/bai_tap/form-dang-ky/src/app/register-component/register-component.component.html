@@ -1,0 +1,83 @@
+<div class="container">
+  <form [formGroup]="registerForm" (ngSubmit)="display()">
+    <div class="form-group">
+      <label>Email</label>
+      <input formControlName="email" class="form-control" aria-describedby="emailHelp">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registerForm.get('email').invalid && (registerForm.get('email').touched||registerForm.get('email').dirty)">
+        Email is not valid
+      </div>
+    </div>
+
+    <div formGroupName="password">
+      <div class="form-group">
+        <label>password</label>
+        <input formControlName="pass" class="form-control" aria-describedby="emailHelp">
+        <div class="alert alert-danger" role="alert"
+             *ngIf="registerForm.get('password').invalid && (registerForm.get('password').touched||registerForm.get('password').dirty)">
+          pass is not valid
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>confirmPassword</label>
+        <input formControlName="confirmPassword" class="form-control" aria-describedby="emailHelp">
+        <div class="alert alert-danger" role="alert"
+             *ngIf="registerForm.get('password').invalid && (registerForm.get('password').touched||registerForm.get('password').dirty)">
+          pass is not valid
+        </div>
+      </div>
+
+      <div class="text-warning" *ngIf="registerForm.hasError('passwordNotMatch',['password'])
+      && registerForm.hasError('minlength')">
+        Password does not match
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>country</label>
+      <select formControlName="country" name="" id="">
+        <option value="đà nẵng">đà nẵng</option>
+        <option value="quảng nam">quảng nam</option>
+      </select>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registerForm.get('country').invalid && (registerForm.get('country').touched||registerForm.get('country').dirty)">
+        country is not valid
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>age</label>
+      <input formControlName="age" class="form-control" aria-describedby="emailHelp">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registerForm.get('age').invalid && (registerForm.get('age').touched||registerForm.get('age').dirty)">
+        age is not valid
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label>gender</label>
+      <input formControlName="gender" type="radio" name="gender" value="Nam"> Nam
+      <input formControlName="gender" type="radio" name="gender" value="Nữ"> Nữ
+      <input formControlName="gender" type="radio" name="gender" value="Khác"> Khác
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registerForm.get('gender').invalid && (registerForm.get('gender').touched||registerForm.get('gender').dirty)">
+        gender is not valid
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label>phone</label>
+      <input formControlName="phone" class="form-control" aria-describedby="emailHelp">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registerForm.get('phone').invalid && (registerForm.get('phone').touched||registerForm.get('phone').dirty)">
+        phone is not valid
+      </div>
+    </div>
+
+
+    <input type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">
+  </form>
+</div>

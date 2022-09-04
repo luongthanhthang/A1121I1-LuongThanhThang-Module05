@@ -1,0 +1,50 @@
+<div class="container">
+  <form [formGroup]="studentForm" (ngSubmit)="createStudent()">
+    <div class="form-group">
+      <label>id</label>
+      <input formControlName="id" class="form-control">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="studentForm.get('id').invalid && (studentForm.get('id').touched||studentForm.get('id').dirty)">
+        id is not valid
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>name</label>
+      <input formControlName="name" class="form-control">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="studentForm.get('name').invalid && (studentForm.get('name').touched||studentForm.get('name').dirty)">
+        name is not valid
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>mark</label>
+      <input formControlName="mark" class="form-control">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="studentForm.get('mark').invalid && (studentForm.get('mark').touched||studentForm.get('mark').dirty)">
+        mark is not valid
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>avatar</label>
+      <input formControlName="avatar" class="form-control">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="studentForm.get('avatar').invalid && (studentForm.get('avatar').touched||studentForm.get('avatar').dirty)">
+        avatar is not valid
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>address</label>
+      <input formControlName="address" class="form-control">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="studentForm.get('address').invalid && (studentForm.get('address').touched||studentForm.get('address').dirty)">
+        address is not valid
+      </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary" [disabled]="!studentForm.valid">
+  </form>
+</div>
