@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {StudentDao} from "../model-dao/StudentDao";
+import {StudentService} from "../service/student.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-reactive-form',
@@ -10,7 +12,10 @@ import {StudentDao} from "../model-dao/StudentDao";
 export class ReactiveFormComponent implements OnInit {
   studentForm: FormGroup;
 
-  constructor() {
+  constructor(
+    private studentService: StudentService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -24,7 +29,9 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   createStudent() {
-    StudentDao.createStudent(this.studentForm.value);
-    this.studentForm.reset();
+    // StudentDao.createStudent(this.studentForm.value);
+    // this.studentForm.reset();
+    this.studentService.createStudent(this.studentForm.value);
+    this.router.navigateByUrl("");
   }
 }

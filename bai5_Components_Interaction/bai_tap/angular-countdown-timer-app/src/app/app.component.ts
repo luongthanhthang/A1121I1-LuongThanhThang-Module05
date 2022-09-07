@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-countdown-timer-app';
+  title: string = 'angular-countdown-timer-app';
   seconds = 10;
   mess = '';
 

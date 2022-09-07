@@ -6,11 +6,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./countdown-timer.component.css']
 })
 export class CountdownTimerComponent implements OnInit {
-  message = '';
+  message: string = '';
   remainingTime: number;
   @Input() secondsChild: number;
   @Output() finish = new EventEmitter();
-  private intervalId = 0;
+  private intervalId: number = 0;
 
   clearTimer() {
     clearInterval(this.intervalId);

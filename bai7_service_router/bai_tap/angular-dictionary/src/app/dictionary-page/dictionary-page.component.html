@@ -1,0 +1,15 @@
+<h1>List Dictionary</h1>
+<table>
+  <thead>
+  <tr>
+    <th>English</th>
+    <th>Detail</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let dictionary of dictionaryList">
+  <tr>
+    <td>{{dictionary.english}}</td>
+    <td><button [routerLink]="['/detail', dictionary.english]">Detail</button></td>
+  </tr>
+  </tbody>
+</table>

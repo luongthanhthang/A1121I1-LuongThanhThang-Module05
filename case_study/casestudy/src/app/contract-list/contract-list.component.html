@@ -10,41 +10,24 @@
         <th>End Date</th>
         <th>Deposit</th>
         <th>Total Money</th>
+        <th>Customer ID</th>
+        <th>Facility ID</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let contract of contracts | paginate: {itemsPerPage: 2, currentPage: page}">
       <tr>
-        <th>1</th>
-        <td>2020-12-08</td>
-        <td>2020-12-08</td>
-        <td>0</td>
-        <td>500000</td>
-      </tr>
-
-      <tr>
-        <th>2</th>
-        <td>2020-07-14</td>
-        <td>2020-07-21</td>
-        <td>200000</td>
-        <td>1000000</td>
-      </tr>
-
-      <tr>
-        <th>3</th>
-        <td>2021-03-15</td>
-        <td>2021-03-17</td>
-        <td>50000</td>
-        <td>700000</td>
-      </tr>
-
-      <tr>
-        <th>4</th>
-        <td>2021-01-14</td>
-        <td>2021-01-18</td>
-        <td>100000</td>
-        <td>5000000</td>
+        <th>{{contract.id}}</th>
+        <td>{{contract.startDate|date:'dd/MM/yyyy'}}</td>
+        <td>{{contract.endDate|date:'dd/MM/yyyy'}}</td>
+        <td>{{contract.deposit | currency: 'VND'}}</td>
+        <td>{{contract.totalMoney | currency: 'VND'}}</td>
+        <td>{{contract.customer.id}}</td>
+        <td>{{contract.facility.id}}</td>
       </tr>
       </tbody>
     </table>
+  </div>
+  <div class="has-text-centered">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
 </div>

@@ -14,7 +14,7 @@
 
 <!--+++++++++++++content+++++++++++++++++++-->
 <div style="display: flex; justify-content: center; width: 100%" class="row">
-  <div class="mx-5 mt-5" *ngFor="let facility of facilities|slice:0:count*3">
+  <div class="mx-5 mt-5" *ngFor="let facility of facilities|slice:0:page*3">
     <div class="card border-0">
       <img
         [src]="facility.image"
@@ -23,16 +23,52 @@
         <h5 class="card-title">{{facility.name}}</h5>
         <p class="card-text text-card">Room size: {{facility.area}} m<sup>2</sup></p>
         <a href="#" class="btn btn-primary text-card">Sửa</a>
-        <a href="#" class="btn btn-danger text-card">Xoá</a>
+        <button type="button"
+                (click)="showInfo(facility.id, facility.name)"
+                class="btn btn-danger text-card"
+                data-toggle="modal"
+                data-target="#facilityModal">
+          Delete
+        </button>
       </div>
     </div>
   </div>
   <div style="z-index: 1; width: 100%;">
     <button style="position: absolute; right: 50%; transform: translateX(50%);"
-            class="btn btn-primary mt-5" *ngIf="count*3 < facilities.length"
-            (click)="count=count+1">
+            class="btn btn-primary mt-5" *ngIf="page*3 < facilities.length"
+            (click)="page=page+1">
       See More...
     </button>
+  </div>
+</div>
+
+<!--+++++++++++++++modal+++++++++++++++++=-->
+<div class="modal fade" id="facilityModal" tabindex="-1" aria-labelledby="facilityModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <!--    **********Thêm thẻ form **************-->
+    <form action="customer">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="facilityModalLabel">Xác Nhận Xoá !</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--         ***************************** thêm ***********************-->
+          <input hidden type="text" value="{{tempId}}" name="id">
+          <span>Bạn có muốn xóa dịch vụ </span>
+          <span class="text-danger">{{tempName}}</span> không?
+          <!--       *************************************************************-->
+        </div>
+        <div class="modal-footer">
+          <!--          *********************** Chuyển type button sang submit *********************-->
+          <button type="submit" class="btn btn-primary">Có</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 <br>

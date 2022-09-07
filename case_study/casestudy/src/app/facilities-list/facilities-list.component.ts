@@ -8,8 +8,10 @@ import {FacilityDAO} from '../data/FacilityDAO';
   styleUrls: ['./facilities-list.component.css']
 })
 export class FacilitiesListComponent implements OnInit {
-  count = 1;
+  page = 1;
   facilities: IFacility[] = FacilityDAO.facilities;
+  tempId: number;
+  tempName: string;
 
   constructor() {
   }
@@ -17,4 +19,8 @@ export class FacilitiesListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showInfo(id: number, name: string) {
+    this.tempId = id;
+    this.tempName = name;
+  }
 }

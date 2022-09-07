@@ -22,43 +22,6 @@
 <app-root></app-root>
 </body>
 
-
-<script>
-  $(document).ready(function () {
-    $('#tableFacilities').DataTable({
-        "dom": 'lrtip',
-        "lengthChange": false,
-        "pageLength": 2,
-        "aLengthMenu": [[5, 10, 20, 50], [5, 10, 20, 50]]// danh sách số trang trên 1 lần hiển thị bảng
-      }
-    );
-  });
-
-  $(document).ready(function () {
-    $('#tableCustomer').DataTable({
-        "dom": 'lrtip',
-        "lengthChange": false,
-        "pageLength": 2
-      }
-    );
-  });
-
-  $(document).ready(function () {
-    $('#tableContract').dataTable({
-      "dom": 'lrtip',
-      "lengthChange": false,
-      "pageLength": 2
-    });
-  });
-</script>
-
-<script>
-  function showInfo(id, name) {
-    document.getElementById("idCustomer").value = id;
-    document.getElementById("nameCustomer").innerText = name;
-  }
-</script>
-
 <script>
   // -----chạy thời gian thực----
   function localTime() {
