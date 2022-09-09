@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center" style="height: 100%">
+    <div class="col-lg-8 col-xl-6">
+      <div class="card rounded-3">
+        <img src="https://furamavietnam.com/wp-content/uploads/2018/10/Vietnam_Danang_Furama_Resort_Exterior-Courtyard-Ocean-Pool.jpg?id=2350;
+"
+             class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+             alt="Sample photo">
+        <div class="card-body" style="background-color: #addccf;">
+          <h1 class="font-text-footer">Create Customer</h1>
+          <br>
+
+          <div class="container-fluid p-0">
+            <form [formGroup]="customerForm" (ngSubmit)="createCustomer()">
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerForm.get('name').invalid && (customerForm.get('name').touched||customerForm.get('name').dirty)">
+                name invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Name</span>
+                <input type="text" class="form-control me-2" placeholder="name customer" formControlName="name">
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerForm.get('gender').invalid && (customerForm.get('gender').touched||customerForm.get('gender').dirty)">
+                gender invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Gender</span>
+                <select class="me-2" formControlName="gender">
+                  <option selected disabled>Chọn</option>
+                  <option value="1">Nam</option>
+                  <option value="0">Nữ</option>
+                </select>
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerForm.get('birthday').invalid && (customerForm.get('birthday').touched||customerForm.get('birthday').dirty)">
+                birthday invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Birthday</span>
+                <input type="date" class="form-control me-2" placeholder="birthday" formControlName="birthday">
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerForm.get('type').invalid && (customerForm.get('type').touched||customerForm.get('type').dirty)">
+                type invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Type</span>
+                <select class="me-2" formControlName="type">
+                  <option selected disabled>Chọn</option>
+                  <option value="Diamond">Diamond</option>
+                  <option value="Platinum">Platinum</option>
+                  <option value="Gold">Gold</option>
+                  <option value="Silver">Silver</option>
+                  <option value="Member">Member</option>
+                </select>
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerForm.get('idCard').invalid && (customerForm.get('idCard').touched||customerForm.get('idCard').dirty)">
+                idCard invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Id Card</span>
+                <input type="text" class="form-control me-2" placeholder="Id Card" formControlName="idCard">
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerForm.get('phone').invalid && (customerForm.get('phone').touched||customerForm.get('phone').dirty)">
+                phone invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Phone</span>
+                <input type="text" class="form-control me-2" placeholder="phone number" formControlName="phone">
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerForm.get('email').invalid && (customerForm.get('email').touched||customerForm.get('email').dirty)">
+                email invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Email</span>
+                <input type="text" class="form-control me-2" placeholder="email" formControlName="email">
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerForm.get('address').invalid && (customerForm.get('address').touched||customerForm.get('address').dirty)">
+                address invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Address</span>
+                <input type="text" class="form-control me-2" placeholder="address" formControlName="address">
+              </div>
+
+
+              <br>
+              <div class="input-group d-flex align-content-center justify-content-center">
+                <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid">Create</button>
+                <button type="button" class="btn btn-danger ms-3"><a style="text-decoration: none"
+                                                                     class="text-light"
+                                                                     routerLink="/customer/list">Huỷ</a>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

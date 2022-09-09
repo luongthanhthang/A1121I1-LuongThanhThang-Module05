@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer List</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../assets/datatable/css/dataTables.bootstrap4.min.css">
+</head>
+<body>
+<center>
+  <h1 class="font-text-footer">Customer List</h1>
+  <br>
+  <table class="table table-hover" id="tableCustomer">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Type Name</th>
+      <th>Name</th>
+      <th>Birthday</th>
+      <th>Gender</th>
+      <th>Id Card</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>1</th>
+      <td>Diamond</td>
+      <td>Lương Thanh Thắng</td>
+      <td>27/06/2000</td>
+      <td>Nam</td>
+      <td>113113113</td>
+      <td>0905113113</td>
+      <td>thang@gmail.com</td>
+      <td>Đà Nẵng</td>
+      <td>
+        <button type="button" class="btn btn-info">Edit</button>
+      </td>
+      <td>
+        <button type="button"
+                onclick="showInfo('1','Lương Thanh Thắng')"
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#exampleModal">
+          Delete
+        </button>
+      </td>
+    </tr>
+
+    <tr>
+      <th>2</th>
+      <td>Platinium</td>
+      <td>Lương Thanh Thanh</td>
+      <td>27/07/2000</td>
+      <td>Nam</td>
+      <td>113113113</td>
+      <td>0905113113</td>
+      <td>thanh123@gmail.com</td>
+      <td>Quảng Nam</td>
+      <td>
+        <button type="button" class="btn btn-info">Edit</button>
+      </td>
+      <td>
+        <button type="button"
+                onclick="showInfo('2','Lương Thanh Thanh')"
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#exampleModal">
+          Delete
+        </button>
+      </td>
+    </tr>
+
+    <tr>
+      <th>3</th>
+      <td>Gold</td>
+      <td>Lương Thanh Thu</td>
+      <td>27/08/2000</td>
+      <td>Nam</td>
+      <td>113113113</td>
+      <td>0905113113</td>
+      <td>thu123@gmail.com</td>
+      <td>Đà Nẵng</td>
+      <td>
+        <button type="button" class="btn btn-info">Edit</button>
+      </td>
+      <td>
+        <button type="button"
+                onclick="showInfo('3','Lương Thanh Thu')"
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#exampleModal">
+          Delete
+        </button>
+      </td>
+    </tr>
+
+    <tr>
+      <th>4</th>
+      <td>Member</td>
+      <td>Lương Thanh A</td>
+      <td>27/08/2000</td>
+      <td>Nam</td>
+      <td>113113113</td>
+      <td>0905113113</td>
+      <td>A@gmail.com</td>
+      <td>Huế</td>
+      <td>
+        <button type="button" class="btn btn-info">Edit</button>
+      </td>
+      <td>
+        <button type="button"
+                onclick="showInfo('4','Lương Thanh A')"
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#exampleModal">
+          Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</center>
+
+<!--+++++++++++++++modal+++++++++++++++++=-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <!--    **********Thêm thẻ form **************-->
+    <form action="customer">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">Xác Nhận Xoá !</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--         ***************************** thêm ***********************-->
+          <input hidden type="text" id="idCustomer" name="id">
+          <span>Bạn có muốn xóa khách hàng </span>
+          <span class="text-danger" id="nameCustomer"></span> không?<span/>
+          <!--       *************************************************************-->
+        </div>
+        <div class="modal-footer">
+          <!--          *********************** Chuyển type button sang submit *********************-->
+          <button type="submit" class="btn btn-primary">Có</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+<script src="../../mainJs.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+<script src="../../../assets/datatable/js/jquery.dataTables.min.js"></script>
+<script src="../../../assets/datatable/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  function showInfo(id, name) {
+    document.getElementById("idCustomer").value = id;
+    document.getElementById("nameCustomer").innerText = name;
+  }
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#tableCustomer').dataTable({
+      "dom": 'lrtip',
+      "lengthChange": false,
+      "pageLength": 2
+    });
+  });
+</script>
+</html>

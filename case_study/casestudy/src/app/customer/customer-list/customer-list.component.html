@@ -1,0 +1,86 @@
+<div class="container">
+  <div>
+    <h1 class="font-text-footer" style="text-align: -webkit-center;">Customer List</h1>
+    <br>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Type Name</th>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Gender</th>
+        <th>Id Card</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th></th>
+        <th>
+          <button type="button" class="btn btn-secondary" routerLink="/customer/create">Create</button>
+        </th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let customer of customers | paginate: {itemsPerPage: 2, currentPage: page}">
+      <tr>
+        <th>{{customer.id}}</th>
+        <td>{{customer.type}}</td>
+        <td>{{customer.name}}</td>
+        <td>{{customer.birthday}}</td>
+
+        <td *ngIf="customer.gender == 0">Nam</td>
+        <td *ngIf="customer.gender == 1">Nữ</td>
+
+        <td>{{customer.idCard}}</td>
+        <td>{{customer.phone}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.address}}</td>
+        <td>
+          <button type="button" class="btn btn-info">Edit</button>
+        </td>
+        <td>
+          <button type="button"
+                  (click)="showInfo(customer.id, customer.name)"
+                  class="btn btn-danger"
+                  data-toggle="modal"
+                  data-target="#customerModal">
+            Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="has-text-centered">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>
+
+<!--+++++++++++++++modal+++++++++++++++++=-->
+<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <!--    **********Thêm thẻ form **************-->
+    <form action="customer">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="customerModalLabel">Xác Nhận Xoá !</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--         ***************************** thêm ***********************-->
+          <input hidden type="text" value="{{tempId}}" name="id">
+          <span>Bạn có muốn xóa khách hàng </span>
+          <span class="text-danger">{{tempName}}</span> không?
+          <!--       *************************************************************-->
+        </div>
+        <div class="modal-footer">
+          <!--          *********************** Chuyển type button sang submit *********************-->
+          <button type="submit" class="btn btn-primary">Có</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
