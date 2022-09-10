@@ -11,59 +11,98 @@
           <br>
 
           <div class="container-fluid p-0">
-            <form action="/customer/create" method="post">
+            <form [formGroup]="customerFormEdit" (ngSubmit)="editCustomer()">
+              <input hidden type="text" class="form-control me-2" placeholder="id" formControlName="id">
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerFormEdit.get('name').invalid && (customerFormEdit.get('name').touched||customerFormEdit.get('name').dirty)">
+                name invalid!!
+              </small>
               <div class="input-group mb-3">
                 <span class="input-group-text">Name</span>
-                <input type="text" class="form-control me-2" placeholder="name customer">
+                <input type="text" class="form-control me-2" placeholder="name customer" formControlName="name">
+              </div>
 
-                <span class="input-group-text ml-2">Gender</span>
-                <select class="me-2">
-                  <option value="">Chọn</option>
-                  <option value="1">Nam</option>
-                  <option value="0">Nữ</option>
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerFormEdit.get('gender').invalid && (customerFormEdit.get('gender').touched||customerFormEdit.get('gender').dirty)">
+                gender invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Gender</span>
+                <select class="me-2" formControlName="gender">
+                  <option value="0">Nam</option>
+                  <option value="1">Nữ</option>
                 </select>
               </div>
 
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerFormEdit.get('birthday').invalid && (customerFormEdit.get('birthday').touched||customerFormEdit.get('birthday').dirty)">
+                birthday invalid!!
+              </small>
               <div class="input-group mb-3">
                 <span class="input-group-text">Birthday</span>
-                <input type="date" class="form-control me-2" placeholder="birthday">
+                <input type="date" class="form-control me-2" placeholder="birthday" formControlName="birthday">
+              </div>
 
-                <span class="input-group-text ml-2">Type</span>
-                <select class="me-2">
-                  <option value="">Chọn</option>
-                  <option value="1">Diamond</option>
-                  <option value="2">Platinum</option>
-                  <option value="3">Gold</option>
-                  <option value="4">Silver</option>
-                  <option value="5">Member</option>
-
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerFormEdit.get('type').invalid && (customerFormEdit.get('type').touched||customerFormEdit.get('type').dirty)">
+                type invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Type</span>
+                <select class="me-2" formControlName="type">
+                  <option selected disabled>Chọn</option>
+                  <option value="Diamond">Diamond</option>
+                  <option value="Platinum">Platinum</option>
+                  <option value="Gold">Gold</option>
+                  <option value="Silver">Silver</option>
+                  <option value="Member">Member</option>
                 </select>
               </div>
 
-
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerFormEdit.get('idCard').invalid && (customerFormEdit.get('idCard').touched||customerFormEdit.get('idCard').dirty)">
+                idCard invalid!!
+              </small>
               <div class="input-group mb-3">
                 <span class="input-group-text">Id Card</span>
-                <input type="text" class="form-control me-2" placeholder="Id Card">
-
-                <span class="input-group-text ml-2">Phone</span>
-                <input type="text" class="form-control me-2" placeholder="phone number">
+                <input type="text" class="form-control me-2" placeholder="Id Card" formControlName="idCard">
               </div>
 
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerFormEdit.get('phone').invalid && (customerFormEdit.get('phone').touched||customerFormEdit.get('phone').dirty)">
+                phone invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Phone</span>
+                <input type="text" class="form-control me-2" placeholder="phone number" formControlName="phone">
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerFormEdit.get('email').invalid && (customerFormEdit.get('email').touched||customerFormEdit.get('email').dirty)">
+                email invalid!!
+              </small>
               <div class="input-group mb-3">
                 <span class="input-group-text">Email</span>
-                <input type="text" class="form-control me-2" placeholder="email">
+                <input type="text" class="form-control me-2" placeholder="email" formControlName="email">
+              </div>
 
-                <span class="input-group-text ml-2">Address</span>
-                <input type="text" class="form-control me-2" placeholder="address">
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="customerFormEdit.get('address').invalid && (customerFormEdit.get('address').touched||customerFormEdit.get('address').dirty)">
+                address invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Address</span>
+                <input type="text" class="form-control me-2" placeholder="address" formControlName="address">
               </div>
 
 
               <br>
-              <div class="input-group mb-5 d-flex align-content-center justify-content-center">
-                <button type="submit" class="btn btn-primary">Edit</button>
+              <div class="input-group d-flex align-content-center justify-content-center">
+                <button type="submit" class="btn btn-primary" [disabled]="customerFormEdit.invalid">Edit</button>
                 <button type="button" class="btn btn-danger ms-3"><a style="text-decoration: none"
                                                                      class="text-light"
-                                                                     href="/customer/list">Huỷ</a>
+                                                                     routerLink="/customer/list">Huỷ</a>
                 </button>
               </div>
             </form>

@@ -22,9 +22,10 @@
       <div class="card-body intro">
         <h5 class="card-title">{{facility.name}}</h5>
         <p class="card-text text-card">Room size: {{facility.area}} m<sup>2</sup></p>
-        <a href="#" class="btn btn-primary text-card">Sửa</a>
+<!--        <p class="card-text text-card">Description: {{facility.description}}</p>-->
+        <a class="btn btn-primary text-card" [routerLink]="['/facility/edit', facility.id]">Edit</a>
         <button type="button"
-                (click)="showInfo(facility.id, facility.name)"
+                (click)="showInfo(facility)"
                 class="btn btn-danger text-card"
                 data-toggle="modal"
                 data-target="#facilityModal">
@@ -41,37 +42,70 @@
     </button>
   </div>
 </div>
-
 <!--+++++++++++++++modal+++++++++++++++++=-->
-<div class="modal fade" id="facilityModal" tabindex="-1" aria-labelledby="facilityModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="facilityModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <!--    **********Thêm thẻ form **************-->
-    <form action="customer">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " id="facilityModalLabel">Xác Nhận Xoá !</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-danger" id="exampleModalLabel">Xác nhận xoá</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-primary">Thông tin trước khi xoá</h4>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Name</span>
+          <span class="ml-3">{{facilityDelete.name}}</span>
         </div>
-        <div class="modal-body">
-          <!--         ***************************** thêm ***********************-->
-          <input hidden type="text" value="{{tempId}}" name="id">
-          <span>Bạn có muốn xóa dịch vụ </span>
-          <span class="text-danger">{{tempName}}</span> không?
-          <!--       *************************************************************-->
-        </div>
-        <div class="modal-footer">
-          <!--          *********************** Chuyển type button sang submit *********************-->
-          <button type="submit" class="btn btn-primary">Có</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">area</span>
+          <span class="ml-3">{{facilityDelete.area}}</span>
 
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">cost</span>
+          <span class="ml-3">{{facilityDelete.cost}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">maxPeople</span>
+          <span class="ml-3">{{facilityDelete.maxPeople}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">rentType</span>
+          <span class="ml-3">{{facilityDelete.rentType}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">serviceType</span>
+          <span class="ml-3">{{facilityDelete.serviceType}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">standardRoom</span>
+          <span class="ml-3">{{facilityDelete.standardRoom}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">description</span>
+          <span class="ml-3">{{facilityDelete.description}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">poolArea</span>
+          <span class="ml-3">{{facilityDelete.poolArea}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">number Of Floor</span>
+          <span class="ml-3">{{facilityDelete.numberOfFloor}}</span>
         </div>
       </div>
-    </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(facilityDelete.id)">Delete
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
 <br>
 <br>
 <br>
 <br>
+
+

@@ -20,8 +20,8 @@
         </th>
       </tr>
       </thead>
-      <tbody *ngFor="let customer of customers | paginate: {itemsPerPage: 2, currentPage: page}">
-      <tr>
+      <tbody>
+      <tr *ngFor="let customer of customers | paginate: {itemsPerPage: 2, currentPage: page}">
         <th>{{customer.id}}</th>
         <td>{{customer.type}}</td>
         <td>{{customer.name}}</td>
@@ -35,11 +35,11 @@
         <td>{{customer.email}}</td>
         <td>{{customer.address}}</td>
         <td>
-          <button type="button" class="btn btn-info">Edit</button>
+          <button type="button" class="btn btn-info" [routerLink]="['/customer/edit', customer.id]">Edit</button>
         </td>
         <td>
           <button type="button"
-                  (click)="showInfo(customer.id, customer.name)"
+                  (click)="showInfo(customer)"
                   class="btn btn-danger"
                   data-toggle="modal"
                   data-target="#customerModal">
@@ -50,37 +50,61 @@
       </tbody>
     </table>
   </div>
-  <div class="has-text-centered">
+  <div>
     <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
 </div>
 
 <!--+++++++++++++++modal+++++++++++++++++=-->
-<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <!--    **********Thêm thẻ form **************-->
-    <form action="customer">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " id="customerModalLabel">Xác Nhận Xoá !</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-danger" id="exampleModalLabel">Xác nhận xoá</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-primary">Thông tin trước khi xoá</h4>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Name</span>
+          <span class="ml-3">{{customerTemp.name}}</span>
         </div>
-        <div class="modal-body">
-          <!--         ***************************** thêm ***********************-->
-          <input hidden type="text" value="{{tempId}}" name="id">
-          <span>Bạn có muốn xóa khách hàng </span>
-          <span class="text-danger">{{tempName}}</span> không?
-          <!--       *************************************************************-->
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Gender</span>
+          <span *ngIf="customerTemp.gender == 0" class="ml-3">Nam</span>
+          <span *ngIf="customerTemp.gender == 1" class="ml-3">Nữ</span>
         </div>
-        <div class="modal-footer">
-          <!--          *********************** Chuyển type button sang submit *********************-->
-          <button type="submit" class="btn btn-primary">Có</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Address</span>
+          <span class="ml-3">{{customerTemp.address}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Email</span>
+          <span class="ml-3">{{customerTemp.email}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Phone</span>
+          <span class="ml-3">{{customerTemp.phone}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Id Card</span>
+          <span class="ml-3">{{customerTemp.idCard}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Birthday</span>
+          <span class="ml-3">{{customerTemp.birthday}}</span>
+        </div>
+        <div class="my-3">
+          <span class="input-group-text" style="display: unset">Type</span>
+          <span class="ml-3">{{customerTemp.type}}</span>
         </div>
       </div>
-    </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(customerTemp.id)">Delete
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>

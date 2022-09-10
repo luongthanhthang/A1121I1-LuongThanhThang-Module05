@@ -15,10 +15,10 @@ const routes: Routes = [
   {path: '', component: IntroComponent},
   {path: 'facility/list', component: FacilitiesListComponent},
   {path: 'facility/create', component: FacilitiesCreateComponent},
-  {path: 'facility/edit', component: FacilitiesEditComponent},
+  {path: 'facility/edit/:id', component: FacilitiesEditComponent},
   {path: 'customer/list', component: CustomerListComponent},
   {path: 'customer/create', component: CustomerCreateComponent},
-  {path: 'customer/edit', component: CustomerEditComponent},
+  {path: 'customer/edit/:id', component: CustomerEditComponent},
   {path: 'contract/list', component: ContractListComponent},
   {path: 'contract/create', component: ContractCreateComponent}
 ];

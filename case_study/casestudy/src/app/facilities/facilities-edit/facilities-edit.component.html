@@ -2,54 +2,127 @@
   <div class="row d-flex justify-content-center align-items-center" style="height: 100%">
     <div class="col-lg-8 col-xl-6">
       <div class="card rounded-3">
-        <img src="https://furamavietnam.com/wp-content/uploads/2018/10/Vietnam_Danang_Furama_Resort_Exterior-Courtyard-Ocean-Pool.jpg?id=2350;
-"
-             class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
-             alt="Sample photo">
+        <img
+          src="https://furamavietnam.com/wp-content/uploads/2018/10/Vietnam_Danang_Furama_Resort_Exterior-Courtyard-Ocean-Pool.jpg?id=2350;"
+          class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+          alt="Sample photo">
         <div class="card-body" style="background-color: #addccf;">
-          <h3 class="font-text-footer">Chỉnh sửa dịch vụ</h3>
+          <h3 class="font-text-footer">Thêm mới dịch vụ</h3>
           <br>
 
-          <form class="px-md-2">
+          <form class="px-md-2" [formGroup]="facilityFormEdit" (ngSubmit)="editFacility()">
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('name').invalid && (facilityFormEdit.get('name').touched||facilityFormEdit.get('name').dirty)">
+              name invalid!!
+            </small>
             <div class="input-group mb-3">
               <span class="input-group-text">Tên dịch vụ</span>
-              <input type="text" class="form-control me-2" placeholder="Tên dịch vụ">
+              <input type="text" class="form-control me-2" placeholder="Tên dịch vụ" formControlName="name">
             </div>
 
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('area').invalid && (facilityFormEdit.get('area').touched||facilityFormEdit.get('area').dirty)">
+              area invalid!!
+            </small>
             <div class="input-group mb-3">
               <span class="input-group-text">Diện tích</span>
-              <input type="text" class="form-control me-2" placeholder="Diện tích">
+              <input type="text" class="form-control me-2" placeholder="Diện tích" formControlName="area">
+            </div>
 
-              <span class="input-group-text ml-2">Dịch vụ</span>
-              <select class="me-2">
-                <option value="1" disabled>Dịch vụ</option>
-                <option value="2">Villa</option>
-                <option value="3">House</option>
-                <option value="4">Room</option>
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('cost').invalid && (facilityFormEdit.get('cost').touched||facilityFormEdit.get('cost').dirty)">
+              cost invalid!!
+            </small>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Gía</span>
+              <input type="number" class="form-control me-2" placeholder="Cost" formControlName="cost">
+            </div>
+
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('maxPeople').invalid && (facilityFormEdit.get('maxPeople').touched||facilityFormEdit.get('maxPeople').dirty)">
+              maxPeople invalid!!
+            </small>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Gía</span>
+              <input type="number" class="form-control me-2" placeholder="maxPeople" formControlName="maxPeople">
+            </div>
+
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('rentType').invalid && (facilityFormEdit.get('rentType').touched||facilityFormEdit.get('rentType').dirty)">
+              rentType invalid!!
+            </small>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Dịch vụ</span>
+              <select class="me-2" formControlName="rentType">
+                <option value="Villa">Villa</option>
+                <option value="House">House</option>
+                <option value="Room">Room</option>
               </select>
             </div>
 
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('serviceType').invalid && (facilityFormEdit.get('serviceType').touched||facilityFormEdit.get('serviceType').dirty)">
+              serviceType invalid!!
+            </small>
             <div class="input-group mb-3">
               <span class="input-group-text">Kiểu thuê</span>
-              <select class="me-2">
-                <option value="2">Năm</option>
-                <option value="3">Tháng</option>
-                <option value="4">Ngày</option>
-                <option value="5">Giờ</option>
+              <select class="me-2" formControlName="serviceType">
+                <option value="Year">Năm</option>
+                <option value="Month">Tháng</option>
+                <option value="Day">Ngày</option>
               </select>
             </div>
 
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('standardRoom').invalid && (facilityFormEdit.get('standardRoom').touched||facilityFormEdit.get('standardRoom').dirty)">
+              standardRoom invalid!!
+            </small>
+            <div class="input-group mb-3">
+              <span class="input-group-text">standard Room</span>
+              <select class="me-2" formControlName="standardRoom">
+                <option value="Vip">Vip</option>
+                <option value="Normal">Normal</option>
+              </select>
+            </div>
+
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('description').invalid && (facilityFormEdit.get('description').touched||facilityFormEdit.get('description').dirty)">
+              description invalid!!
+            </small>
             <div class="input-group mb-3">
               <span class="input-group-text">Mô tả dịch vụ</span>
               <textarea class="form-control me-2" name="" id="" cols="30" rows="4"
-                        placeholder="Mô tả dịch vụ"></textarea>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text ml-2">Số lượng người tối đa</span>
-              <input type="number" class="form-control me-2" placeholder="Số lượng người tối đa">
+                        placeholder="Mô tả dịch vụ" formControlName="description"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-success btn-lg mb-1">Chỉnh sửa</button>
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('poolArea').invalid && (facilityFormEdit.get('poolArea').touched||facilityFormEdit.get('poolArea').dirty)">
+              poolArea invalid!!
+            </small>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Diện tích hồ bơi</span>
+              <input type="number" class="form-control me-2" placeholder="poolArea" formControlName="poolArea">
+            </div>
+
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('numberOfFloor').invalid && (facilityFormEdit.get('numberOfFloor').touched||facilityFormEdit.get('numberOfFloor').dirty)">
+              numberOfFloor invalid!!
+            </small>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Số tầng</span>
+              <input type="number" class="form-control me-2" placeholder="numberOfFloor" formControlName="numberOfFloor">
+            </div>
+
+            <small class="text-danger mb-0 pb-0"
+                   *ngIf="facilityFormEdit.get('image').invalid && (facilityFormEdit.get('image').touched||facilityFormEdit.get('image').dirty)">
+              image invalid!!
+            </small>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Image</span>
+              <input type="number" class="form-control me-2" placeholder="image" formControlName="image">
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg mb-1" [disabled]="facilityFormEdit.invalid">Chỉnh sửa</button>
             <button type="button" class="btn btn-danger btn-lg mb-1">Huỷ bỏ</button>
 
           </form>

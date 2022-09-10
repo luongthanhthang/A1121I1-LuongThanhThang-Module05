@@ -14,24 +14,24 @@ export class CustomerService {
   ) {
   }
 
-  getAll(): Observable<ICustomer[]> {
+  getAllCustomer(): Observable<ICustomer[]> {
     return this.httpClient.get<ICustomer[]>(this.URI);
   }
 
-  findById(id: number): Observable<ICustomer> {
+  findByIdCustomer(id: number): Observable<ICustomer> {
     return this.httpClient.get(this.URI + '/' + id);
   }
 
-  create(customer: ICustomer): Observable<void> {
+  createCustomer(customer: ICustomer): Observable<void> {
     return this.httpClient.post<void>(this.URI, customer);
   }
 
-  delete(id: number): Observable<void> {
+  deleteCustomer(id: number): Observable<void> {
     return this.httpClient.delete<void>(this.URI + '/' + id);
   }
 
-  update(id: number, customer: ICustomer): Observable<ICustomer> {
-    this.httpClient.put<ICustomer>(`${this.URI}/${id}`, customer).subscribe();
+  updateCustomer(id: number, customer: ICustomer): Observable<ICustomer> {
+    // this.httpClient.put<ICustomer>(`${this.URI}/${id}`, customer).subscribe();
     return this.httpClient.put<ICustomer>(`${this.URI}/${id}`, customer);
   }
 }

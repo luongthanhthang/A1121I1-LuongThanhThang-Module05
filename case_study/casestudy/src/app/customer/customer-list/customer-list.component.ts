@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ICustomer} from '../../models/ICustomer';
 import {CustomerService} from '../../service/customer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -9,14 +10,12 @@ import {CustomerService} from '../../service/customer.service';
 })
 export class CustomerListComponent implements OnInit {
   customers: ICustomer[] = [];
-  tempId: number;
-  tempName: string;
+  customerTemp: ICustomer = {};
   page = 1;
 
   constructor(
     private customerService: CustomerService
   ) {
-    this.getAll();
   }
 
   ngOnInit(): void {
@@ -24,14 +23,24 @@ export class CustomerListComponent implements OnInit {
   }
 
   getAll() {
-    this.customerService.getAll().subscribe(function(data) {
+    this.customerService.getAllCustomer().subscribe((data) => {
       this.customers = data;
-      console.log(this.customers);
     });
   }
 
-  showInfo(id: number, name: string) {
-    this.tempId = id;
-    this.tempName = name;
+  showInfo(customer: ICustomer) {
+    this.customerTemp = customer;
+  }
+
+  delete(id: number) {
+    this.customerService.deleteCustomer(id).subscribe(
+      () => {
+      },
+      () => {
+      },
+      () => {
+        alert('Xoá thành công');
+        this.getAll();
+      });
   }
 }

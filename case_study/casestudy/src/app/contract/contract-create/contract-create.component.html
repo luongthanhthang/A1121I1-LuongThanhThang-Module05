@@ -11,42 +11,65 @@
 
           <div class="container-fluid p-0">
             <form [formGroup]="contractForm" (ngSubmit)="createContract()">
-              <div class="input-group mb-3">
-                <span class="input-group-text">Start Date</span>
-                <input type="date" class="form-control me-2" placeholder="Start Date" formControlName="startDate">
-              </div>
               <small class="text-danger mb-0 pb-0"
                      *ngIf="contractForm.get('startDate').invalid && (contractForm.get('startDate').touched||contractForm.get('startDate').dirty)">
                 startDate invalid!!
               </small>
-
               <div class="input-group mb-3">
-                <span class="input-group-text">End Date</span>
-                <input type="date" class="form-control me-2" placeholder="End Date" formControlName="endDate">
+                <span class="input-group-text">Start Date</span>
+                <input type="date" class="form-control me-2" placeholder="Start Date" formControlName="startDate">
               </div>
+
               <small class="text-danger mb-0 pb-0"
                      *ngIf="contractForm.get('endDate').invalid && (contractForm.get('endDate').touched||contractForm.get('endDate').dirty)">
                 endDate invalid!!
               </small>
-
-
               <div class="input-group mb-3">
-                <span class="input-group-text">Deposit</span>
-                <input type="number" class="form-control me-2" placeholder="Deposit" formControlName="deposit">
+                <span class="input-group-text">End Date</span>
+                <input type="date" class="form-control me-2" placeholder="End Date" formControlName="endDate">
               </div>
+
               <small class="text-danger mb-0 pb-0"
                      *ngIf="contractForm.get('deposit').invalid && (contractForm.get('deposit').touched||contractForm.get('deposit').dirty)">
                 deposit invalid!!
               </small>
-
               <div class="input-group mb-3">
-                <span class="input-group-text">Total Money</span>
-                <input type="number" class="form-control me-2" placeholder="Total Money" formControlName="totalMoney">
+                <span class="input-group-text">Deposit</span>
+                <input type="number" class="form-control me-2" placeholder="Deposit" formControlName="deposit">
               </div>
+
               <small class="text-danger mb-0 pb-0"
                      *ngIf="contractForm.get('totalMoney').invalid && (contractForm.get('totalMoney').touched||contractForm.get('totalMoney').dirty)">
                 deposit invalid!!
               </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Total Money</span>
+                <input type="number" class="form-control me-2" placeholder="Total Money" formControlName="totalMoney">
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="contractForm.get('customer').invalid && (contractForm.get('customer').touched||contractForm.get('customer').dirty)">
+                deposit invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Customer</span>
+                <select class="me-2" formControlName="customer">
+                  <option disabled value="">Chọn</option>
+                  <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.name}}</option>
+                </select>
+              </div>
+
+              <small class="text-danger mb-0 pb-0"
+                     *ngIf="contractForm.get('facility').invalid && (contractForm.get('facility').touched||contractForm.get('facility').dirty)">
+                deposit invalid!!
+              </small>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Facility</span>
+                <select class="me-2" formControlName="facility">
+                  <option disabled value="">Chọn</option>
+                  <option *ngFor="let facility of facilities" [ngValue]="facility">{{facility.name}}</option>
+                </select>
+              </div>
 
               <br>
               <div class="input-group mb-5 d-flex align-content-center justify-content-center">

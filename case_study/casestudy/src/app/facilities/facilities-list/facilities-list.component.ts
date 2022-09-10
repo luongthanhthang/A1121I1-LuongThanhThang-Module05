@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IFacility} from '../../models/IFacility';
-import {FacilityDAO} from '../../data/FacilityDAO';
+import {FacilityService} from '../../service/facility.service';
 
 @Component({
   selector: 'app-facilities-list',
@@ -9,18 +9,33 @@ import {FacilityDAO} from '../../data/FacilityDAO';
 })
 export class FacilitiesListComponent implements OnInit {
   page = 1;
-  facilities: IFacility[] = FacilityDAO.facilities;
-  tempId: number;
-  tempName: string;
+  facilities: IFacility[] = [];
+  facilityDelete: IFacility = {};
 
-  constructor() {
+  constructor(
+    private facilityService: FacilityService
+  ) {
   }
 
   ngOnInit(): void {
+    this.facilityService.getAllFacility().subscribe((data) => {
+      this.facilities = data;
+    });
   }
 
-  showInfo(id: number, name: string) {
-    this.tempId = id;
-    this.tempName = name;
+  showInfo(facility: IFacility) {
+    this.facilityDelete = facility;
+  }
+
+  delete(id: number) {
+    this.facilityService.deleteFacility(id).subscribe(
+      () => {
+      },
+      () => {
+      },
+      () => {
+        alert('Xoá thành công');
+        this.ngOnInit();
+      });
   }
 }

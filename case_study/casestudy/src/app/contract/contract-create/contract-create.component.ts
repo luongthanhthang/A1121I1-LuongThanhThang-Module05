@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {ContractService} from '../../service/contract.service';
 import {Router} from '@angular/router';
+import {CustomerService} from '../../service/customer.service';
+import {FacilityService} from '../../service/facility.service';
+import {ICustomer} from '../../models/ICustomer';
+import {IFacility} from '../../models/IFacility';
 
 @Component({
   selector: 'app-contract-create',
@@ -10,14 +14,26 @@ import {Router} from '@angular/router';
 })
 export class ContractCreateComponent implements OnInit {
   contractForm: FormGroup;
+  customers: ICustomer[] = [];
+  facilities: IFacility[] = [];
 
   constructor(
     private contractService: ContractService,
+    private customerService: CustomerService,
+    private facilityService: FacilityService,
     private router: Router
   ) {
   }
 
   ngOnInit(): void {
+    this.customerService.getAllCustomer().subscribe((data) => {
+      this.customers = data;
+    });
+
+    this.facilityService.getAllFacility().subscribe((data) => {
+      this.facilities = data;
+    });
+
     this.contractForm = new FormGroup({
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
@@ -29,7 +45,16 @@ export class ContractCreateComponent implements OnInit {
   }
 
   createContract() {
-    this.contractService.create(this.contractForm.value);
-    this.router.navigateByUrl('/contract/list');
+    this.contractService.createContract(this.contractForm.value).subscribe(
+      () => {
+      },
+      () => {
+      },
+      () => {
+        alert('Thêm mới hợp đồng thành công');
+        this.router.navigateByUrl('contract/list');
+      }
+    );
+
   }
 }
