@@ -42,8 +42,8 @@ body {
 }
 
 .card:hover .intro {
-  height: 150px;
-  background: rgba(27, 27, 27, 0.5);
+  height: 180px;
+  background: rgba(27, 27, 27, 0.3);
 }
 
 .card:hover .text-card {

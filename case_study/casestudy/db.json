@@ -2,7 +2,10 @@
   "customers": [
     {
       "id": 1,
-      "type": "Member",
+      "type": {
+        "id": 5,
+        "name": "Member"
+      },
       "name": "Nguyễn Thị Hào",
       "birthday": "1970-11-07",
       "gender": "0",
@@ -13,7 +16,10 @@
     },
     {
       "id": 2,
-      "type": "Gold",
+      "type": {
+        "id": 3,
+        "name": "Gold"
+      },
       "name": "Phạm Xuân Diệu",
       "birthday": "1992-08-08",
       "gender": 1,
@@ -24,7 +30,10 @@
     },
     {
       "id": 3,
-      "type": "Diamond",
+      "type": {
+        "id": 1,
+        "name": "Diamond"
+      },
       "name": "Trương Đình Nghệ",
       "birthday": "1990-02-27",
       "gender": 1,
@@ -35,7 +44,10 @@
     },
     {
       "id": 4,
-      "type": "Diamond",
+      "type": {
+        "id": 1,
+        "name": "Diamond"
+      },
       "name": "Dương Văn Quan",
       "birthday": "1981-07-08",
       "gender": 1,
@@ -46,7 +58,10 @@
     },
     {
       "id": 5,
-      "type": "Silver",
+      "type": {
+        "id": 4,
+        "name": "Silver"
+      },
       "name": "Hoàng Trần Nhi Nhi",
       "birthday": "1995-12-09",
       "gender": 0,
@@ -57,7 +72,10 @@
     },
     {
       "id": 6,
-      "type": "Silver",
+      "type": {
+        "id": 4,
+        "name": "Silver"
+      },
       "name": "Tôn Nữ Mộc Châu",
       "birthday": "2005-12-06",
       "gender": 0,
@@ -68,7 +86,10 @@
     },
     {
       "id": 7,
-      "type": "Silver",
+      "type": {
+        "id": 4,
+        "name": "Silver"
+      },
       "name": "Tôn Nữ Mộc Châu",
       "birthday": "2005-12-06",
       "gender": 0,
@@ -79,7 +100,10 @@
     },
     {
       "id": 8,
-      "type": "Diamond",
+      "type": {
+        "id": 1,
+        "name": "Diamond"
+      },
       "name": "Nguyễn Mỹ Kim",
       "birthday": "1984-04-08",
       "gender": 0,
@@ -90,7 +114,10 @@
     },
     {
       "id": 9,
-      "type": "Diamond",
+      "type": {
+        "id": 2,
+        "name": "Platinum"
+      },
       "name": "11111112222",
       "birthday": "2022-09-01",
       "gender": "0",
@@ -100,15 +127,54 @@
       "address": "111111122"
     },
     {
-      "type": "Platinum",
+      "id": 10,
+      "type": {
+        "id": 4,
+        "name": "Silver"
+      },
       "name": "2222222",
       "birthday": "2022-09-07",
       "gender": "1",
       "idCard": "222222222",
       "phone": "0902222222",
       "email": "2222@gmail.com",
-      "address": "222222",
-      "id": 10
+      "address": "222222"
+    },
+    {
+      "type": {
+        "id": 4,
+        "name": "Silver"
+      },
+      "name": "3333333",
+      "birthday": "2022-09-29",
+      "gender": "0",
+      "idCard": "333333333",
+      "phone": "0903333333",
+      "email": "33333@gmail.com",
+      "address": "333333",
+      "id": 11
+    }
+  ],
+  "customer-types": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
     }
   ],
   "facilities": [

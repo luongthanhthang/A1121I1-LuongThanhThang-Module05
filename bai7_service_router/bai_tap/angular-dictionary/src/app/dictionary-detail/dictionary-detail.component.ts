@@ -9,7 +9,10 @@ import {IDictionary} from '../model/idictionary';
   styleUrls: ['./dictionary-detail.component.css']
 })
 export class DictionaryDetailComponent implements OnInit {
-  dictionary: IDictionary;
+  dictionary: IDictionary = {
+    english: '',
+    vietnamese: ''
+  };
 
   constructor(
     private dictionaryService: DictionaryService,
@@ -21,7 +24,6 @@ export class DictionaryDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activeRouter.paramMap.subscribe((param) => {
       const eng = param.get('english');
-      // @ts-ignore
       this.dictionary = this.dictionaryService.findByEnglish(eng);
     });
   }

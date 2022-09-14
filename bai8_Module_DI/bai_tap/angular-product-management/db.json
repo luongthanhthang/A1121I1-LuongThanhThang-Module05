@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "name": "IPhone 123",
+      "price": 2400000,
+      "description": "New",
+      "category": {
+        "id": "1"
+      },
+      "id": 1
+    },
+    {
+      "id": 3,
+      "name": "IPhone X",
+      "price": 968000,
+      "description": "97%",
+      "category": {
+        "id": "2"
+      }
+    },
+    {
+      "name": "IPhone 89",
+      "price": 7540000,
+      "description": "98%",
+      "category": {
+        "id": "1"
+      },
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "IPhone 11 Pro",
+      "price": 1895000,
+      "description": "Like new",
+      "category": {
+        "id": "1"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "name": "IPhone1",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Samsung"
+    },
+    {
+      "id": 3,
+      "name": "LG"
+    },
+    {
+      "name": "11111111",
+      "id": 4
+    }
+  ]
+}

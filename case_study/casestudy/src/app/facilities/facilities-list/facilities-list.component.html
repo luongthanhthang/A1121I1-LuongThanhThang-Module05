@@ -22,7 +22,7 @@
       <div class="card-body intro">
         <h5 class="card-title">{{facility.name}}</h5>
         <p class="card-text text-card">Room size: {{facility.area}} m<sup>2</sup></p>
-<!--        <p class="card-text text-card">Description: {{facility.description}}</p>-->
+        <p class="card-text text-card">Description: {{facility.description}}</p>
         <a class="btn btn-primary text-card" [routerLink]="['/facility/edit', facility.id]">Edit</a>
         <button type="button"
                 (click)="showInfo(facility)"
@@ -34,7 +34,7 @@
       </div>
     </div>
   </div>
-  <div style="z-index: 1; width: 100%;">
+  <div style="z-index: 1; width: 100%; display: block;">
     <button style="position: absolute; right: 50%; transform: translateX(50%);"
             class="btn btn-primary mt-5" *ngIf="page*3 < facilities.length"
             (click)="page=page+1">
@@ -96,6 +96,10 @@
         </div>
       </div>
       <div class="modal-footer">
+        <div style="position: absolute; left: 18px;">
+          <h6 class="text-danger">Lưu ý! Hành động không thể hoàn
+            tác!</h6>
+        </div>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(facilityDelete.id)">Delete
         </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

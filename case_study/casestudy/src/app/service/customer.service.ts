@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ICustomer} from '../models/ICustomer';
@@ -19,7 +19,7 @@ export class CustomerService {
   }
 
   findByIdCustomer(id: number): Observable<ICustomer> {
-    return this.httpClient.get(this.URI + '/' + id);
+    return this.httpClient.get<ICustomer>(this.URI + '/' + id);
   }
 
   createCustomer(customer: ICustomer): Observable<void> {
@@ -31,7 +31,10 @@ export class CustomerService {
   }
 
   updateCustomer(id: number, customer: ICustomer): Observable<ICustomer> {
-    // this.httpClient.put<ICustomer>(`${this.URI}/${id}`, customer).subscribe();
     return this.httpClient.put<ICustomer>(`${this.URI}/${id}`, customer);
+  }
+
+  searchCustomer(name: string, email: string, typeId: string): Observable<ICustomer[]> {
+    return this.httpClient.get<ICustomer[]>(this.URI + '?name_like=' + name + '&email_like=' + email + '&type.id_like=' + typeId);
   }
 }

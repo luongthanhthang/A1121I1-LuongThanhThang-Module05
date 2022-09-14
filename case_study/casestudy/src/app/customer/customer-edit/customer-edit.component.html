@@ -50,13 +50,13 @@
               </small>
               <div class="input-group mb-3">
                 <span class="input-group-text">Type</span>
+<!--                <select [compareWith]="compareFn" class="me-2" formControlName="type">-->
+<!--                  <option selected disabled value="">Chọn</option>-->
+<!--                  <option *ngFor="let customerType of customerTypes" [ngValue]="customerType">{{customerType.name}}</option>-->
+<!--                </select>-->
                 <select class="me-2" formControlName="type">
-                  <option selected disabled>Chọn</option>
-                  <option value="Diamond">Diamond</option>
-                  <option value="Platinum">Platinum</option>
-                  <option value="Gold">Gold</option>
-                  <option value="Silver">Silver</option>
-                  <option value="Member">Member</option>
+                  <option selected disabled value="">Chọn</option>
+                  <option *ngFor="let customerType of customerTypes" [value]="customerType.id">{{customerType.name}}</option>
                 </select>
               </div>
 

@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ICustomer} from '../../models/ICustomer';
 import {CustomerService} from '../../service/customer.service';
-import {Router} from '@angular/router';
+import {FormControl, FormGroup} from '@angular/forms';
+import {ICustomerType} from '../../models/ICustomerType';
+import {CustomerTypeService} from '../../service/customer-type.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -10,15 +12,25 @@ import {Router} from '@angular/router';
 })
 export class CustomerListComponent implements OnInit {
   customers: ICustomer[] = [];
-  customerTemp: ICustomer = {};
+  customerTypes: ICustomerType[] = [];
+  customerTemp: ICustomer = {
+    type: {}
+  };
   page = 1;
+  customerSearch: FormGroup;
 
   constructor(
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private customerTypeService: CustomerTypeService
   ) {
   }
 
   ngOnInit(): void {
+    this.customerSearch = new FormGroup({
+      name: new FormControl(''),
+      email: new FormControl(''),
+      typeId: new FormControl('')
+    });
     this.getAll();
   }
 
@@ -26,10 +38,17 @@ export class CustomerListComponent implements OnInit {
     this.customerService.getAllCustomer().subscribe((data) => {
       this.customers = data;
     });
+
+
+    this.customerTypeService.getAllCustomerType().subscribe((data) => {
+      this.customerTypes = data;
+    });
   }
 
   showInfo(customer: ICustomer) {
+    console.log(customer);
     this.customerTemp = customer;
+    console.log(this.customerTemp);
   }
 
   delete(id: number) {
@@ -42,5 +61,19 @@ export class CustomerListComponent implements OnInit {
         alert('Xoá thành công');
         this.getAll();
       });
+  }
+
+  searchCustomer() {
+    console.log(123);
+    console.log(this.customerSearch.value);
+    this.customerService.searchCustomer(
+      this.customerSearch.get('name').value,
+      this.customerSearch.get('email').value,
+      this.customerSearch.get('typeId').value
+    ).subscribe(
+      (data) => {
+        this.customers = data;
+      }
+    );
   }
 }

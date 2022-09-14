@@ -2,53 +2,80 @@
   <div>
     <h1 class="font-text-footer" style="text-align: -webkit-center;">Customer List</h1>
     <br>
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Type Name</th>
-        <th>Name</th>
-        <th>Birthday</th>
-        <th>Gender</th>
-        <th>Id Card</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th></th>
-        <th>
-          <button type="button" class="btn btn-secondary" routerLink="/customer/create">Create</button>
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let customer of customers | paginate: {itemsPerPage: 2, currentPage: page}">
-        <th>{{customer.id}}</th>
-        <td>{{customer.type}}</td>
-        <td>{{customer.name}}</td>
-        <td>{{customer.birthday}}</td>
+    <!--    +++++++++search++++++++++++++++-->
+    <form [formGroup]="customerSearch" (ngSubmit)="searchCustomer()" class="mb-3">
+      <div class="row">
+        <div class="input-group col-md-4">
+          <span class="input-group-text">Name Search</span>
+          <input type="text" class="form-control me-2" placeholder="name search" formControlName="name">
+        </div>
+        <div class="input-group col-md-4">
+          <span class="input-group-text">Email Search</span>
+          <input type="text" class="form-control me-2" placeholder="email search" formControlName="email">
+        </div>
+        <div class="input-group col-md-3">
+          <span class="input-group-text">Type Search</span>
+          <select class="me-2" formControlName="typeId" style="width: auto">
+            <option selected value="">Chọn</option>
+            <option *ngFor="let customerType of customerTypes"
+                    value="{{customerType.id}}">{{customerType.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type Name</th>
+          <th>Name</th>
+          <th>Birthday</th>
+          <th>Gender</th>
+          <th>Id Card</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th></th>
+          <th>
+            <button type="button" class="btn btn-secondary" routerLink="/customer/create">Create</button>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let customer of customers | paginate: {itemsPerPage: 2, currentPage: page}">
+          <th>{{customer.id}}</th>
+          <td>{{customer.type.name}}</td>
+          <td>{{customer.name}}</td>
+          <td>{{customer.birthday}}</td>
 
-        <td *ngIf="customer.gender == 0">Nam</td>
-        <td *ngIf="customer.gender == 1">Nữ</td>
+          <td *ngIf="customer.gender == 0">Nam</td>
+          <td *ngIf="customer.gender == 1">Nữ</td>
 
-        <td>{{customer.idCard}}</td>
-        <td>{{customer.phone}}</td>
-        <td>{{customer.email}}</td>
-        <td>{{customer.address}}</td>
-        <td>
-          <button type="button" class="btn btn-info" [routerLink]="['/customer/edit', customer.id]">Edit</button>
-        </td>
-        <td>
-          <button type="button"
-                  (click)="showInfo(customer)"
-                  class="btn btn-danger"
-                  data-toggle="modal"
-                  data-target="#customerModal">
-            Delete
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+          <td>{{customer.idCard}}</td>
+          <td>{{customer.phone}}</td>
+          <td>{{customer.email}}</td>
+          <td>{{customer.address}}</td>
+          <td>
+            <button type="button" class="btn btn-info" [routerLink]="['/customer/edit', customer.id]">Edit</button>
+          </td>
+          <td>
+            <button type="button"
+                    (click)="showInfo(customer)"
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    data-target="#customerModal">
+              Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div>
     <pagination-controls (pageChange)="page = $event"></pagination-controls>
@@ -97,10 +124,14 @@
         </div>
         <div class="my-3">
           <span class="input-group-text" style="display: unset">Type</span>
-          <span class="ml-3">{{customerTemp.type}}</span>
+          <span class="ml-3">{{customerTemp.type.name}}</span>
         </div>
       </div>
       <div class="modal-footer">
+        <div style="position: absolute; left: 18px;">
+          <h6 class="text-danger">Lưu ý! Hành động không thể hoàn
+            tác!</h6>
+        </div>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(customerTemp.id)">Delete
         </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

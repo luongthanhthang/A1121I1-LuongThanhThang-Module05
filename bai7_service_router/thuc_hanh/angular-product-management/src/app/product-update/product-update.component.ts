@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./product-update.component.css']
 })
 export class ProductUpdateComponent implements OnInit {
-  productUpdate: Product;
+  productUpdate: Product = {};
   productForm: FormGroup;
 
   constructor(private productService: ProductService,
@@ -35,8 +35,8 @@ export class ProductUpdateComponent implements OnInit {
   update() {
     const product = this.productForm.value;
     this.productService.update(product);
-    this.router.navigateByUrl("/product/list");
-    alert("Cập nhật thành công")
+    this.router.navigateByUrl('/product/list');
+    alert('Cập nhật thành công');
   }
 
 }

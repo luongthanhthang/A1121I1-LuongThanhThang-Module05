@@ -9,7 +9,7 @@ import {Product} from '../model/product';
   styleUrls: ['./product-delete.component.css']
 })
 export class ProductDeleteComponent implements OnInit {
-  productDelete: Product;
+  productDelete: Product = {};
 
   constructor(
     private productService: ProductService,
@@ -22,7 +22,7 @@ export class ProductDeleteComponent implements OnInit {
     this.activeRouter.paramMap.subscribe((param) => {
       const id = parseInt(param.get('id'));
       this.productDelete = this.productService.findById(id);
-    })
+    });
   }
 
   close() {
