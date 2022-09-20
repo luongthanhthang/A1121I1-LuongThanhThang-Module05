@@ -47,11 +47,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let customer of customers | paginate: {itemsPerPage: 2, currentPage: page}">
+        <tr *ngFor="let customer of customers | paginate: {itemsPerPage: 2, currentPage: page, totalItems: totalLength}">
           <th>{{customer.id}}</th>
           <td>{{customer.type.name}}</td>
           <td>{{customer.name}}</td>
-          <td>{{customer.birthday}}</td>
+          <td>{{customer.birthday|date:"dd/MM/yyyy"}}</td>
 
           <td *ngIf="customer.gender == 0">Nam</td>
           <td *ngIf="customer.gender == 1">Nữ</td>

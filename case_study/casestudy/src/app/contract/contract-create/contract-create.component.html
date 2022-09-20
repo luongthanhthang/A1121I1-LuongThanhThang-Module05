@@ -28,6 +28,9 @@
                 <span class="input-group-text">End Date</span>
                 <input type="date" class="form-control me-2" placeholder="End Date" formControlName="endDate">
               </div>
+              <div *ngIf="contractForm.hasError('dateError')" class="alert alert-danger" role="alert">
+                Ngày bắt đầu phải sớm hơn ngày kết thúc
+              </div>
 
               <small class="text-danger mb-0 pb-0"
                      *ngIf="contractForm.get('deposit').invalid && (contractForm.get('deposit').touched||contractForm.get('deposit').dirty)">

@@ -18,6 +18,7 @@ export class CustomerListComponent implements OnInit {
   };
   page = 1;
   customerSearch: FormGroup;
+  totalLength: number;
 
   constructor(
     private customerService: CustomerService,
@@ -37,6 +38,7 @@ export class CustomerListComponent implements OnInit {
   getAll() {
     this.customerService.getAllCustomer().subscribe((data) => {
       this.customers = data;
+      this.totalLength = data.length;
     });
 
 
@@ -64,7 +66,6 @@ export class CustomerListComponent implements OnInit {
   }
 
   searchCustomer() {
-    console.log(123);
     console.log(this.customerSearch.value);
     this.customerService.searchCustomer(
       this.customerSearch.get('name').value,
@@ -73,6 +74,8 @@ export class CustomerListComponent implements OnInit {
     ).subscribe(
       (data) => {
         this.customers = data;
+        this.totalLength = data.length;
+        this.page = 1;
       }
     );
   }

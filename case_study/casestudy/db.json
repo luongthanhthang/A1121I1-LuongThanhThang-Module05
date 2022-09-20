@@ -73,14 +73,14 @@
     {
       "id": 6,
       "type": {
-        "id": 4,
-        "name": "Silver"
+        "id": 1,
+        "name": "Diamond"
       },
-      "name": "Tôn Nữ Mộc Châu",
-      "birthday": "2005-12-06",
-      "gender": 0,
-      "idCard": "732434215",
-      "phone": "0988888844",
+      "name": "Tôn Nữ Mộc Châu Châu",
+      "birthday": "2005-12-08",
+      "gender": "1",
+      "idCard": "999999999",
+      "phone": "0908888844",
       "email": "tonnuchau@gmail.com",
       "address": "37 Yên Thế, Đà Nẵng"
     },
@@ -125,34 +125,6 @@
       "phone": "090111111122",
       "email": "1111@gmail.com",
       "address": "111111122"
-    },
-    {
-      "id": 10,
-      "type": {
-        "id": 4,
-        "name": "Silver"
-      },
-      "name": "2222222",
-      "birthday": "2022-09-07",
-      "gender": "1",
-      "idCard": "222222222",
-      "phone": "0902222222",
-      "email": "2222@gmail.com",
-      "address": "222222"
-    },
-    {
-      "type": {
-        "id": 4,
-        "name": "Silver"
-      },
-      "name": "3333333",
-      "birthday": "2022-09-29",
-      "gender": "0",
-      "idCard": "333333333",
-      "phone": "0903333333",
-      "email": "33333@gmail.com",
-      "address": "333333",
-      "id": 11
     }
   ],
   "customer-types": [
@@ -319,7 +291,8 @@
       "image": 1111222
     },
     {
-      "name": "222222",
+      "id": 11,
+      "name": "333333",
       "area": "222222",
       "cost": 22222222,
       "maxPeople": 22222,
@@ -329,8 +302,7 @@
       "description": "2222222222",
       "poolArea": 22,
       "numberOfFloor": 22222,
-      "image": "222222",
-      "id": 11
+      "image": "222222"
     }
   ],
   "contacts": [
