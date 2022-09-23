@@ -2,21 +2,23 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IPackage} from "../models/IPackage";
+import {IProduct} from "../models/IProduct";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PackageService {
 
-  readonly URI: string = 'http://localhost:3000/packages';
+  // readonly URI: string = 'http://localhost:3000/packages';
+  readonly URI: string = 'http://localhost:8080/api/packages';
 
   constructor(
     private httpClient: HttpClient
   ) {
   }
 
-  getAll(): Observable<IPackage[]> {
-    return this.httpClient.get<IPackage[]>(this.URI);
+  getAll(page: number, size: number): Observable<IPackage[]> {
+    return this.httpClient.get<IPackage[]>(this.URI + '/' + page + '/' + size);
   }
 
   findById(id: number): Observable<IPackage> {

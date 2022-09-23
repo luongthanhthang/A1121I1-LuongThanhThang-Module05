@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IPackage} from "../../models/IPackage";
 import {IProduct} from "../../models/IProduct";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -16,7 +16,13 @@ export class PackageListComponent implements OnInit {
   packageTemp: IPackage = {
     product: {}
   };
-  page = 1;
+
+  totalPageList: number[] = [];
+
+  page: number = 0;
+  size: number = 2;
+  totalPages: number
+
   packageSearch: FormGroup;
   totalLength: number;
 
@@ -37,9 +43,17 @@ export class PackageListComponent implements OnInit {
   }
 
   getAll() {
-    this.packageService.getAll().subscribe((data) => {
-      this.packages = data;
-      this.totalLength = data.length;
+    this.packageService.getAll(this.page, this.size).subscribe((data: any) => {
+      this.packages = data.content;
+
+      this.totalPages = data.totalPages;
+      console.log(this.totalPages)
+
+      for (let i = 0; i < this.totalPages; i++) {
+        this.totalPageList.push(i);
+      }
+      console.log(this.totalPageList)
+
     });
 
 
@@ -78,5 +92,26 @@ export class PackageListComponent implements OnInit {
         this.page = 1;
       }
     );
+  }
+
+  getPreviousPage() {
+    this.page--;
+    this.packageService.getAll(this.page, this.size).subscribe((data: any) => {
+      this.packages = data.content;
+    })
+  }
+
+  getNextPage() {
+    this.page++;
+    this.packageService.getAll(this.page, this.size).subscribe((data: any) => {
+      this.packages = data.content;
+    })
+  }
+
+  getNumberPage(pageNumber: number) {
+    this.page = pageNumber;
+    this.packageService.getAll(this.page, this.size).subscribe((data: any) => {
+      this.packages = data.content;
+    })
   }
 }

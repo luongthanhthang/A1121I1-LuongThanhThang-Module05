@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IProduct} from "../models/IProduct";
@@ -8,7 +8,8 @@ import {IProduct} from "../models/IProduct";
 })
 export class ProductService {
 
-  readonly URI: string = 'http://localhost:3000/products';
+  // readonly URI: string = 'http://localhost:3000/products';
+  readonly URI: string = 'http://localhost:8080/api/products';
 
   constructor(
     private httpClient: HttpClient
@@ -16,6 +17,7 @@ export class ProductService {
   }
 
   getAll(): Observable<IProduct[]> {
+    console.log(this.httpClient.get<IProduct[]>(this.URI).subscribe())
     return this.httpClient.get<IProduct[]>(this.URI);
   }
 
@@ -23,8 +25,8 @@ export class ProductService {
     return this.httpClient.get<IProduct>(this.URI + '/' + id);
   }
 
-  create(product: IProduct): Observable<void> {
-    return this.httpClient.post<void>(this.URI, product);
+  create(product: IProduct): Observable<IProduct> {
+    return this.httpClient.post<IProduct>(this.URI, product);
   }
 
   delete(id: number): Observable<void> {
