@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin("*")
 @RequestMapping("api/packages")
 public class PackageRestController {
     @Autowired
@@ -34,10 +34,21 @@ public class PackageRestController {
     //    ++++++++++Phân trang+++++++++
     @GetMapping("/{page}/{size}")
     public ResponseEntity<Page<Package>> findAllPackage(@PathVariable("page") Integer page
-            , @PathVariable("size") Integer size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Package> packageList = packageService.findAllPage(pageable);
-        if (packageList == null) {
+            , @PathVariable("size") Integer size
+            , @RequestParam("product_id") Optional<Integer> id
+            , @RequestParam("endDate") Optional<String> endDate) {
+        Page<Package> packageList;
+
+        if (id.isPresent() || (endDate.isPresent() && !endDate.get().isEmpty())) {
+            Pageable pageable = PageRequest.of(page, size);
+            packageList = packageService.search(id.get(), endDate.get(), pageable);
+        } else {
+            Pageable pageable = PageRequest.of(page, size);
+            packageList = packageService.findAllPage(pageable);
+            packageList.forEach(System.out::println);
+        }
+
+        if (packageList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(packageList, HttpStatus.OK);

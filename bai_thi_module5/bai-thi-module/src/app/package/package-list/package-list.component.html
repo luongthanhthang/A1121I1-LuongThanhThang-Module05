@@ -18,15 +18,15 @@
           <input type="date" class="form-control me-2" placeholder="Ngày hết hạn" formControlName="endDate">
         </div>
 
-        <div class="input-group col-md-4">
-          <span class="input-group-text">Ngày nhập hàng 1</span>
-          <input type="date" class="form-control me-2" placeholder="Ngày sản xuất" formControlName="dateProduct1">
-        </div>
+        <!--        <div class="input-group col-md-4">-->
+        <!--          <span class="input-group-text">Ngày nhập hàng 1</span>-->
+        <!--          <input type="date" class="form-control me-2" placeholder="Ngày sản xuất" formControlName="dateProduct1">-->
+        <!--        </div>-->
 
-        <div class="input-group col-md-4 mt-3">
-          <span class="input-group-text">Ngày nhập hàng 2 </span>
-          <input type="date" class="form-control me-2" placeholder="Ngày sản xuất" formControlName="dateProduct2">
-        </div>
+        <!--        <div class="input-group col-md-4 mt-3">-->
+        <!--          <span class="input-group-text">Ngày nhập hàng 2 </span>-->
+        <!--          <input type="date" class="form-control me-2" placeholder="Ngày sản xuất" formControlName="dateProduct2">-->
+        <!--        </div>-->
         <div class="col-md-1">
           <button class="btn btn-outline-success mt-3" type="submit">Search</button>
         </div>
@@ -76,7 +76,7 @@
   </div>
   <div>
     <!--    <pagination-controls (pageChange)="page = $event"></pagination-controls>-->
-    <nav aria-label="...">
+    <nav aria-label="..." *ngIf="totalPages > 1">
       <ul class="pagination">
         <li class="page-item" *ngIf="page > 0">
           <a class="page-link"
@@ -88,7 +88,7 @@
           <a class="page-link" (click)="getNumberPage(pageNumber)">{{pageNumber + 1}}</a>
         </li>
 
-        <li class="page-item" *ngIf="page < packages.length">
+        <li class="page-item" *ngIf="page < totalPages-1">
           <a class="page-link"
              (click)="getNextPage()">Next</a>
         </li>

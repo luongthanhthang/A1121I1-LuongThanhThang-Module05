@@ -41,4 +41,12 @@ public class PackageServiceImpl implements IPackageService {
     public Optional<Package> findById(Integer id) {
         return packageRepository.findById(id);
     }
+
+    @Override
+    public Page<Package> search(Integer idProduct, String endDate, Pageable pageable) {
+        return packageRepository.search("%" + idProduct + "%"
+                , "%" + endDate + "%"
+                , pageable);
+    }
+
 }

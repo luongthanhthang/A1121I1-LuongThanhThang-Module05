@@ -24,7 +24,6 @@ export class PackageListComponent implements OnInit {
   totalPages: number
 
   packageSearch: FormGroup;
-  totalLength: number;
 
   constructor(
     private productService: ProductService,
@@ -35,27 +34,31 @@ export class PackageListComponent implements OnInit {
   ngOnInit(): void {
     this.packageSearch = new FormGroup({
       productId: new FormControl(''),
-      endDate: new FormControl(''),
-      dateProduct1: new FormControl(''),
-      dateProduct2: new FormControl('')
+      endDate: new FormControl('')
+      // ,dateProduct1: new FormControl(''),
+      // dateProduct2: new FormControl('')
     });
+
     this.getAll();
   }
 
   getAll() {
     this.packageService.getAll(this.page, this.size).subscribe((data: any) => {
-      this.packages = data.content;
+        this.packages = data.content;
 
-      this.totalPages = data.totalPages;
-      console.log(this.totalPages)
+        this.totalPageList = [];
+        this.totalPages = data.totalPages;
 
-      for (let i = 0; i < this.totalPages; i++) {
-        this.totalPageList.push(i);
-      }
-      console.log(this.totalPageList)
-
-    });
-
+        for (let i = 0; i < this.totalPages; i++) {
+          this.totalPageList.push(i);
+        }
+        console.log(this.page)
+        console.log(this.totalPages)
+      },
+      () => {
+        this.page--;
+        this.getAll();
+      });
 
     this.productService.getAll().subscribe((data) => {
       this.products = data;
@@ -73,45 +76,83 @@ export class PackageListComponent implements OnInit {
       () => {
       },
       () => {
-        alert('Xoá thành công');
         this.getAll();
+        alert('Xoá thành công');
       });
   }
 
   searchPackage() {
-    console.log(this.packageSearch.value);
+    if (this.page != 0) {
+      this.page = 0;
+    }
     this.packageService.search(
+      this.page,
+      this.size,
       this.packageSearch.get('productId').value,
-      this.packageSearch.get('endDate').value,
-      this.packageSearch.get('dateProduct1').value,
-      this.packageSearch.get('dateProduct2').value
+      this.packageSearch.get('endDate').value
+      // ,this.packageSearch.get('dateProduct1').value,
+      // this.packageSearch.get('dateProduct2').value
     ).subscribe(
-      (data) => {
-        this.packages = data;
-        this.totalLength = data.length;
-        this.page = 1;
+      (data: any) => {
+        this.packages = data.content;
+
+        this.totalPageList = [];
+        this.totalPages = data.totalPages;
+
+        for (let i = 0; i < this.totalPages; i++) {
+          this.totalPageList.push(i);
+        }
       }
     );
   }
 
+  searchPackagePagination() {
+    this.packageService.search(
+      this.page,
+      this.size,
+      this.packageSearch.get('productId').value,
+      this.packageSearch.get('endDate').value
+      // ,this.packageSearch.get('dateProduct1').value,
+      // this.packageSearch.get('dateProduct2').value
+    ).subscribe(
+      (data: any) => {
+        this.packages = data.content;
+
+        this.totalPageList = [];
+        this.totalPages = data.totalPages;
+
+        for (let i = 0; i < this.totalPages; i++) {
+          this.totalPageList.push(i);
+        }
+      }
+    );
+  }
+
+
   getPreviousPage() {
     this.page--;
-    this.packageService.getAll(this.page, this.size).subscribe((data: any) => {
-      this.packages = data.content;
-    })
+    if (this.packageSearch.get('productId').value != "" || this.packageSearch.get('endDate').value != "") {
+      this.searchPackagePagination();
+    } else {
+      this.getAll();
+    }
   }
 
   getNextPage() {
     this.page++;
-    this.packageService.getAll(this.page, this.size).subscribe((data: any) => {
-      this.packages = data.content;
-    })
+    if (this.packageSearch.get('productId').value != "" || this.packageSearch.get('endDate').value != "") {
+      this.searchPackagePagination();
+    } else {
+      this.getAll();
+    }
   }
 
   getNumberPage(pageNumber: number) {
     this.page = pageNumber;
-    this.packageService.getAll(this.page, this.size).subscribe((data: any) => {
-      this.packages = data.content;
-    })
+    if (this.packageSearch.get('productId').value != "" || this.packageSearch.get('endDate').value != "") {
+      this.searchPackagePagination();
+    } else {
+      this.getAll();
+    }
   }
 }

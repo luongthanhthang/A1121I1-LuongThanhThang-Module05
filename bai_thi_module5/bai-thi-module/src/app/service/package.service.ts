@@ -33,10 +33,15 @@ export class PackageService {
     return this.httpClient.delete<void>(this.URI + '/' + id);
   }
 
-  search(name: string, endDate: string, dateProduct1: string, dateProduct2: string): Observable<IPackage[]> {
-    if (dateProduct1 == '' || dateProduct2 == '') {
-      return this.httpClient.get<IPackage[]>(this.URI + '?product.id_like=' + name + '&endDate_like=' + endDate);
-    }
-    return this.httpClient.get<IPackage[]>(this.URI + '?product.id_like=' + name + '&endDate_like=' + endDate + '&dateProduct_gte=' + dateProduct1 + '&dateProduct_lte=' + dateProduct2);
+  // search(name: string, endDate: string, dateProduct1: string, dateProduct2: string): Observable<IPackage[]> {
+  //   if (dateProduct1 == '' || dateProduct2 == '') {
+  //     return this.httpClient.get<IPackage[]>(this.URI + '?product.id_like=' + name + '&endDate_like=' + endDate);
+  //   }
+  //   return this.httpClient.get<IPackage[]>(this.URI + '?product.id_like=' + name + '&endDate_like=' + endDate + '&dateProduct_gte=' + dateProduct1 + '&dateProduct_lte=' + dateProduct2);
+  // }
+
+  search(page: number, size: number, name: string, endDate: string): Observable<IPackage[]> {
+    return this.httpClient.get<IPackage[]>(this.URI + '/' + page + '/' + size
+      + '?product_id=' + name + '&endDate=' + endDate);
   }
 }
