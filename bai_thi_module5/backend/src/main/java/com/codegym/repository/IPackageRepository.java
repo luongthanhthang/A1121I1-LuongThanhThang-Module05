@@ -13,4 +13,7 @@ public interface IPackageRepository extends JpaRepository<Package, Integer> {
 
     @Query(value = "select * from package where product_id like ?1 and end_date like ?2", nativeQuery = true)
     Page<Package> search(String idProduct, String endDate, Pageable pageable);
+
+    @Query(value = "select * from package where product_id like ?1 and end_date like ?2 and (date_product between STR_TO_DATE(?3,'%Y-%m-%d') and STR_TO_DATE(?4,'%Y-%m-%d'))", nativeQuery = true)
+    Page<Package> search(String idProduct, String endDate, String dateProduct1, String dateProduct2, Pageable pageable);
 }

@@ -10,7 +10,7 @@
           <h1 class="font-text-footer">Create Customer</h1>
           <br>
 
-          <div class="container-fluid p-0">
+          <div class="container-fluid p-0 align-content-center justify-content-center">
             <form [formGroup]="customerForm" (ngSubmit)="createCustomer()">
               <small class="text-danger mb-0 pb-0"
                      *ngIf="customerForm.get('name').invalid && (customerForm.get('name').touched||customerForm.get('name').dirty)">

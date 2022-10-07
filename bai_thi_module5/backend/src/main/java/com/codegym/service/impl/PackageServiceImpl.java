@@ -33,6 +33,11 @@ public class PackageServiceImpl implements IPackageService {
     }
 
     @Override
+    public Package update(Package aPackage) {
+        return packageRepository.save(aPackage);
+    }
+
+    @Override
     public void delete(Integer id) {
         packageRepository.deleteById(id);
     }
@@ -43,10 +48,18 @@ public class PackageServiceImpl implements IPackageService {
     }
 
     @Override
-    public Page<Package> search(Integer idProduct, String endDate, Pageable pageable) {
+    public Page<Package> search(String idProduct, String endDate, Pageable pageable) {
         return packageRepository.search("%" + idProduct + "%"
                 , "%" + endDate + "%"
                 , pageable);
     }
 
+    @Override
+    public Page<Package> search(String idProduct, String endDate, String dateProduct1, String dateProduct2, Pageable pageable) {
+        return packageRepository.search("%" + idProduct + "%"
+                , "%" + endDate + "%"
+                , dateProduct1
+                , dateProduct2
+                , pageable);
+    }
 }

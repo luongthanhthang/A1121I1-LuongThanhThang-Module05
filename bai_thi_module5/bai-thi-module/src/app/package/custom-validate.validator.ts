@@ -1,4 +1,4 @@
-import {AbstractControl, FormControl, ValidationErrors} from '@angular/forms';
+import {AbstractControl, ValidationErrors} from '@angular/forms';
 import {formatDate} from '@angular/common';
 
 export function identityRevealedValidator(control: AbstractControl): ValidationErrors | null {

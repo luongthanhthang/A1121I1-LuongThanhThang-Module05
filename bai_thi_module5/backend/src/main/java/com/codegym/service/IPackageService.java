@@ -14,9 +14,14 @@ public interface IPackageService {
 
     Package create(Package aPackage);
 
+    Package update(Package aPackage);
+
     void delete(Integer id);
 
     Optional<Package> findById(Integer id);
 
-    Page<Package> search(Integer idProduct, String endDate, Pageable pageable);
+    Page<Package> search(String idProduct, String endDate, Pageable pageable);
+
+    Page<Package> search(String idProduct, String endDate, String dateProduct1, String dateProduct2, Pageable pageable);
+
 }

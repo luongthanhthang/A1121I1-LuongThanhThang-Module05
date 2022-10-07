@@ -23,6 +23,11 @@ export class PackageListComponent implements OnInit {
   size: number = 2;
   totalPages: number
 
+  productIdSearch: string = '';
+  endDateSearch: string = '';
+  dateProduct1Search: string = '';
+  dateProduct2Search: string = '';
+
   packageSearch: FormGroup;
 
   constructor(
@@ -35,8 +40,8 @@ export class PackageListComponent implements OnInit {
     this.packageSearch = new FormGroup({
       productId: new FormControl(''),
       endDate: new FormControl('')
-      // ,dateProduct1: new FormControl(''),
-      // dateProduct2: new FormControl('')
+      , dateProduct1: new FormControl(''),
+      dateProduct2: new FormControl('')
     });
 
     this.getAll();
@@ -52,8 +57,6 @@ export class PackageListComponent implements OnInit {
         for (let i = 0; i < this.totalPages; i++) {
           this.totalPageList.push(i);
         }
-        console.log(this.page)
-        console.log(this.totalPages)
       },
       () => {
         this.page--;
@@ -85,13 +88,19 @@ export class PackageListComponent implements OnInit {
     if (this.page != 0) {
       this.page = 0;
     }
+
+    this.productIdSearch = this.packageSearch.get('productId').value;
+    this.endDateSearch = this.packageSearch.get('endDate').value;
+    this.dateProduct1Search = this.packageSearch.get('dateProduct1').value;
+    this.dateProduct2Search = this.packageSearch.get('dateProduct2').value;
+
     this.packageService.search(
       this.page,
       this.size,
-      this.packageSearch.get('productId').value,
-      this.packageSearch.get('endDate').value
-      // ,this.packageSearch.get('dateProduct1').value,
-      // this.packageSearch.get('dateProduct2').value
+      this.productIdSearch,
+      this.endDateSearch,
+      this.dateProduct1Search,
+      this.dateProduct2Search
     ).subscribe(
       (data: any) => {
         this.packages = data.content;
@@ -110,10 +119,10 @@ export class PackageListComponent implements OnInit {
     this.packageService.search(
       this.page,
       this.size,
-      this.packageSearch.get('productId').value,
-      this.packageSearch.get('endDate').value
-      // ,this.packageSearch.get('dateProduct1').value,
-      // this.packageSearch.get('dateProduct2').value
+      this.productIdSearch,
+      this.endDateSearch,
+      this.dateProduct1Search,
+      this.dateProduct2Search
     ).subscribe(
       (data: any) => {
         this.packages = data.content;
@@ -124,6 +133,8 @@ export class PackageListComponent implements OnInit {
         for (let i = 0; i < this.totalPages; i++) {
           this.totalPageList.push(i);
         }
+      },
+      () => {
       }
     );
   }

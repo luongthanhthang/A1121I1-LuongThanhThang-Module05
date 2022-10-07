@@ -40,8 +40,19 @@ export class PackageService {
   //   return this.httpClient.get<IPackage[]>(this.URI + '?product.id_like=' + name + '&endDate_like=' + endDate + '&dateProduct_gte=' + dateProduct1 + '&dateProduct_lte=' + dateProduct2);
   // }
 
-  search(page: number, size: number, name: string, endDate: string): Observable<IPackage[]> {
+  search(page: number, size: number, name: string, endDate: string, productDate1: string, productDate2: string): Observable<IPackage[]> {
+    if (productDate1 == '' || productDate2 == '') {
+      return this.httpClient.get<IPackage[]>(this.URI + '/' + page + '/' + size
+        + '?product_id=' + name + '&endDate=' + endDate);
+    }
     return this.httpClient.get<IPackage[]>(this.URI + '/' + page + '/' + size
-      + '?product_id=' + name + '&endDate=' + endDate);
+      + '?product_id=' + name + '&endDate=' + endDate
+      + '&dateProduct1=' + productDate1 + '&dateProduct2=' + productDate2);
   }
+
+  updatePackage(id: number, aPackage: IPackage): Observable<void> {
+    return this.httpClient.put<void>(this.URI + "/" + id, aPackage);
+  }
+
+
 }
